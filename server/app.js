@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-const cartRoutes = require('./routes/cartRoutes');
+const cartRoutes = require('./routes/cartRoutes')
 const adminRoutes = require('./routes/adminRoutes')
 
 const app = express()
