@@ -1,0 +1,50 @@
+.cart-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .cart-table th, .cart-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .quantity-input {
+    width: 60px;
+  }
+  
+  .remove-button, .apply-coupon-button, .checkout-button {
+    padding: 8px 12px;
+    margin-top: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+  }
+  
+  .remove-button:hover, .apply-coupon-button:hover, .checkout-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .coupon-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .coupon-input {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  

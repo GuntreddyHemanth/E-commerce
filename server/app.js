@@ -6,8 +6,10 @@ const cartRoutes = require('./routes/cartRoutes')
 const adminRoutes = require('./routes/adminRoutes')
 
 const app = express()
+app.use(express.json()); // Middleware to parse JSON
+
 app.use(cors())
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 
 app.use('/api/v1/cart', cartRoutes)
 app.use('/api/v1/admin', adminRoutes)

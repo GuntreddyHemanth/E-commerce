@@ -1,4 +1,5 @@
-const cart = require("../models/Cart")
+const Cart = require("../models/Cart")
+const cart = new Cart(); // Create an instance of the Cart class
 let orderCount = 0;
 let discountCode = null;
 
@@ -32,4 +33,21 @@ exports.checkout = (req, res) => {
         discount,
         newDiscountCode: discountCode || 'N/A',
     });
+};
+
+exports.removeItem = (req, res) => {
+    const { productId } = req.body; // Ensure `productId` is passed from the client side
+    console.log('Received request to remove item:', productId);
+
+    if (!productId) {
+        return res.status(400).json({ error: 'Product ID is required' });
+    }
+
+    // Call the `removeItem` method using `productId`
+    const success = cart.removeItem(productId);
+    if (!success) {
+        return res.status(404).json({ error: 'Item not found in the cart' });
+    }
+
+    res.status(200).json({ message: 'Item removed from the cart', cart });
 };
