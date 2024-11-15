@@ -13,27 +13,40 @@ exports.addItemToCart = (req, res) => {
 }
 
 exports.checkout = (req, res) => {
-    const {code} = req.body
+    const { cart, code } = req.body;  // Assuming cart and code are being passed from the front-end
     let discount = 0;
 
-    if (discountCode && code === discountCode){
-        discount = 0.1 * cart.totalAmount;
-        discountCode = null;
-    }
-    const finalAmount = cart.totalAmount - discount
-    orderCount++
+    // Calculate the total amount of the cart
+    const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
-    if (orderCount % 3 === 0){//Assuming every 3rd order generate a new code
-        discountCode = `DISCOUNT - ${Date.now()}`
+    // Check if the coupon code is valid and apply the discount (10%)
+    if (discountCode && code === discountCode) {
+        discount = 0.1 * totalAmount; // Apply 10% discount
+        discountCode = null;  // Reset the discount code after use
     }
-    cart.clearCart();
+
+    // Calculate the final amount after applying the discount
+    const finalAmount = totalAmount - discount;
+
+    // Increment order count and generate a new discount code for every 3rd order
+    orderCount++;
+    if (orderCount % 3 === 0) {
+        discountCode = `DISCOUNT-${Date.now()}`;
+    }
+
+    // Clear the cart after placing the order (assuming the `cart` is an array)
+    cart.length = 0;  // Clear the cart using this approach
+
+    // Respond with the original amount, discount, and final amount
     res.status(200).json({
-        message: 'order placed successfully',
-        finalAmount,
-        discount,
-        newDiscountCode: discountCode || 'N/A',
+        message: 'Order placed successfully',
+        originalAmount: totalAmount.toFixed(2),
+        discount: discount.toFixed(2),
+        finalAmount: finalAmount.toFixed(2),
+        newDiscountCode: discountCode || 'N/A',  // New code if applicable, else 'N/A'
     });
 };
+
 
 exports.removeItem = (req, res) => {
     const { productId } = req.body; // Ensure `productId` is passed from the client side
