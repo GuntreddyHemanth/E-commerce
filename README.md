@@ -1,7 +1,7 @@
 
 Here’s a sample README.md file for your eCommerce store project with the APIs and functionality described:
 
-eCommerce Store API
+**eCommerce Store API **
 This repository contains the backend functionality for an eCommerce store where clients can add items to their cart, checkout, and apply discount codes. The discount code is issued on every nth order. The store also includes admin APIs for generating discount codes and viewing order statistics.
 
 Table of Contents
@@ -18,6 +18,3 @@ License
 Technologies Used
 Node.js: Runtime environment
 Express.js: Web framework
-MongoDB: Database (used for cart and order management)
-Mongoose: ORM for MongoDB
-Postman or equivalent for testing the API
